@@ -14,7 +14,7 @@ call plug#end()
 set noshowmode
 
 set number numberwidth=2
-set expandtab
+set expandtab shiftwidth=2
 let mapleader = "-"
 nnoremap <space> za
 
@@ -38,11 +38,11 @@ nnoremap <leader>t :NERDTreeToggle<CR>
 nnoremap <leader>a :Ack 
 nnoremap <leader>F :Files<CR>
 
-" js 2 width tab
-autocmd FileType javascript setlocal tabstop=2 shiftwidth=2
+" python 4 width tab
+autocmd FileType python set expandtab shiftwidth=4
 
 " coc global extensions
-let g:coc_global_extensions=['coc-powershell', 'coc-python', 'coc-tsserver']
+let g:coc_global_extensions=['coc-powershell', 'coc-python', 'coc-tsserver', 'coc-prettier']
 
 " TextEdit might fail if hidden is not set.
 set hidden
