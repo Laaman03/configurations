@@ -1,4 +1,4 @@
-call plug#begin('~/.local/plugged')
+call plug#begin()
 
 Plug 'preservim/nerdtree'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -10,12 +10,13 @@ Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
+" had to remove this becuase it screwed up vimplug bit time
 " use powershell on win32
-if has('win32')
-  set shell=powershell  shellpipe=\| 
-  set shellcmdflag=-NoLogo\ -NoProfile\ -ExecutionPolicy\ RemoteSigned\ -Command
-  set shellredir=\|\ Out-File\ -Encoding\ UTF8
-endif
+" if has('win32')
+"   set shell=powershell  shellpipe=\| 
+"   set shellcmdflag=-NoLogo\ -NoProfile\ -ExecutionPolicy\ RemoteSigned\ -Command
+"   set shellredir=\|\ Out-File\ -Encoding\ UTF8
+" endif
 
 set splitright
 
