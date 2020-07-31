@@ -36,10 +36,13 @@ autocmd FileType python nnoremap <buffer> <leader>c I#<esc>
 " plugin shortcuts
 nnoremap <leader>t :NERDTreeToggle<CR>
 nnoremap <leader>a :Ack 
-nnoremap <leader>f :Files<CR>
+nnoremap <leader>F :Files<CR>
 
 " js 2 width tab
 autocmd FileType javascript setlocal tabstop=2 shiftwidth=2
+
+" coc global extensions
+let g:coc_global_extensions=['coc-powershell', 'coc-python', 'coc-tsserver']
 
 " TextEdit might fail if hidden is not set.
 set hidden
