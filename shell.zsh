@@ -6,8 +6,8 @@ alias se="cd ~/configurations && nvim shell.zsh"
 alias code="/mnt/c/Program\ Files/Microsoft\ VS\ Code/bin/code"
 
 function configure-up() {
-        pushd ~/configurations
+        cd ~/configurations
         git pull
         source ~/.zshrc
-        popd
+        cd -
 }
