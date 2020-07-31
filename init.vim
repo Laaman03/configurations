@@ -23,11 +23,10 @@ if has('unix')
         \ 'javascript': ['/home/wfarris/bin/js-ts-langserver'],
         \ 'python': ['/home/wfarris/bin/pyls'],
         \ }
+        nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+        nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+        nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 endif
-
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 
 set number numberwidth=2
