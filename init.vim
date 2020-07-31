@@ -1,14 +1,24 @@
 call plug#begin('~/.local/plugged')
 
 Plug 'preservim/nerdtree'
-Plug 'pprovost/vim-ps1'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'mileszs/ack.vim'
+Plug 'sheerun/vim-polyglot'
 
 call plug#end()
+
+" use powershell on win32
+if has('win32')
+  set shell=powershell  shellpipe=\| 
+  set shellcmdflag=-NoLogo\ -NoProfile\ -ExecutionPolicy\ RemoteSigned\ -Command
+  set shellredir=\|\ Out-File\ -Encoding\ UTF8
+endif
+
+set splitright
+
 
 " no longer need status becuase of lightline
 set noshowmode
