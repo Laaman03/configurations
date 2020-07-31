@@ -10,7 +10,7 @@ function Nvim-All {
 function Configure-Up {
   Push-Location $HOME\configurations
   git pull
+  . .\Profile.ps1
   Pop-Location
-  . $profile
 }
 
