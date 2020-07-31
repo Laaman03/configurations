@@ -2,10 +2,17 @@ call plug#begin('~/.local/plugged')
 
 Plug 'preservim/nerdtree'
 Plug 'pprovost/vim-ps1'
-Plug 'autozimu/LanguageClient-neovim', {
-	\ 'branch': 'next',
-	\ 'do': 'bash install.sh',
-	\ }
+if has('unix')
+        Plug 'autozimu/LanguageClient-neovim', {
+                \ 'branch': 'next',
+                \ 'do': 'bash install.sh',
+                \ }
+else
+        Plug 'autozimu/LanguageClient-neovim', {
+                \ 'branch': 'next',
+                \ 'do': 'powershell -executionpolicy bypass -File install.ps1',
+                \ }
+endif
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
