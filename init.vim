@@ -18,10 +18,12 @@ set noshowmode
 
 " lsp setup
 set hidden
-let g:LanguageClient_serverCommands = {
-\ 'javascript': ['/home/wfarris/bin/js-ts-langserver'],
-\ 'python': ['/home/wfarris/bin/pyls'],
-\ }
+if has('unix')
+        let g:LanguageClient_serverCommands = {
+        \ 'javascript': ['/home/wfarris/bin/js-ts-langserver'],
+        \ 'python': ['/home/wfarris/bin/pyls'],
+        \ }
+endif
 
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
