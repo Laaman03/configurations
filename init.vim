@@ -52,7 +52,7 @@ nnoremap <leader>F :Files<CR>
 autocmd FileType python set expandtab shiftwidth=4
 
 " coc global extensions
-let g:coc_global_extensions=['coc-powershell', 'coc-python', 'coc-tsserver', 'coc-prettier']
+let g:coc_global_extensions=['coc-powershell', 'coc-python', 'coc-tsserver', 'coc-prettier', 'coc-json']
 
 " TextEdit might fail if hidden is not set.
 set hidden
