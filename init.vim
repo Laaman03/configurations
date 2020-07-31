@@ -48,8 +48,11 @@ inoremap jk <esc>
 autocmd FileType javascript nnoremap <buffer> <leader>c I//<esc>
 autocmd FileType python nnoremap <buffer> <leader>c I#<esc>
 
-" - > opens nerd tree
-map <leader>t :NERDTreeToggle<CR>
+" plugin shortcuts
+nnoremap <leader>t :NERDTreeToggle<CR>
+nnoremap <leader>a :Ack 
+
+nnoremap <leader>f :Files<CR>
 
 " js 2 width tab
 autocmd FileType javascript setlocal tabstop=2 shiftwidth=2
