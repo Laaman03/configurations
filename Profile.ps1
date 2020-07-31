@@ -6,3 +6,11 @@ Set-Alias -Name vim -Value nvim
 function Nvim-All {
   Invoke-Expression "nvim -p $((Get-ChildItem -file).Name -join " ")"
 }
+
+function Configure-Up {
+  Push-Location $HOME\configurations
+  git pull
+  Pop-Location
+  . $profile
+}
+
