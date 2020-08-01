@@ -1,4 +1,4 @@
-export PATH="~/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 export EDITOR="nvim"
 export VISUAL="nvim"
 alias vim="nvim"
