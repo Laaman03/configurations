@@ -7,6 +7,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'mileszs/ack.vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
@@ -18,7 +19,12 @@ call plug#end()
 "   set shellredir=\|\ Out-File\ -Encoding\ UTF8
 " endif
 
+" my custom stuff
+let mapleader = "-"
 set splitright
+set synmaxcol=700
+highlight Search ctermbg=darkcyan
+nnoremap <leader>ch :noh<CR>
 
 
 " no longer need status becuase of lightline
@@ -26,8 +32,8 @@ set noshowmode
 
 set number numberwidth=2
 set expandtab shiftwidth=2
-let mapleader = "-"
 nnoremap <space> za
+nnoremap <leader>b :buffers<CR>:buffer<Space>
 
 " edit and source vim rc
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
@@ -48,6 +54,7 @@ autocmd FileType python nnoremap <buffer> <leader>c I#<esc>
 nnoremap <leader>t :NERDTreeToggle<CR>
 nnoremap <leader>a :Ack 
 nnoremap <leader>F :Files<CR>
+nnoremap <leader>ps :! powershell -command ""<Left>
 
 " python 4 width tab
 autocmd FileType python set expandtab shiftwidth=4
