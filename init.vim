@@ -21,6 +21,7 @@ call plug#end()
 
 " my custom stuff
 let mapleader = "-"
+let NERDTreeQuitOnOpen=1
 set splitright
 set synmaxcol=700
 highlight Search ctermbg=darkcyan
