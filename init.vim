@@ -25,6 +25,9 @@ set splitright
 set synmaxcol=700
 highlight Search ctermbg=darkcyan
 nnoremap <leader>ch :noh<CR>
+let g:lightline = {
+  \ 'colorscheme': 'darcula',
+  \ }
 
 
 " no longer need status becuase of lightline
