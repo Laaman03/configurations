@@ -18,6 +18,9 @@ call plug#end()
 "   set shellcmdflag=-NoLogo\ -NoProfile\ -ExecutionPolicy\ RemoteSigned\ -Command
 "   set shellredir=\|\ Out-File\ -Encoding\ UTF8
 " endif
+"
+" Omnisharp bandaid
+au BufEnter Filetype cs :e<CR>
 
 " my custom stuff
 let mapleader = "-"
@@ -63,7 +66,15 @@ nnoremap <leader>ps :! powershell -command ""<Left>
 autocmd FileType python set expandtab shiftwidth=4
 
 " coc global extensions
-let g:coc_global_extensions=['coc-powershell', 'coc-python', 'coc-tsserver', 'coc-prettier', 'coc-json']
+let g:coc_global_extensions=[
+  \ 'coc-powershell',
+  \ 'coc-python', 
+  \ 'coc-tsserver', 
+  \ 'coc-prettier', 
+  \ 'coc-json',
+  \ 'coc-xml',
+  \ 'coc-omnisharp'
+  \]
 
 " TextEdit might fail if hidden is not set.
 set hidden
