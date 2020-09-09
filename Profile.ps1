@@ -20,5 +20,5 @@ function lss {
     [int]$In = 1KB
   )
   
-  Get-ChildItem $Path | Select-Object Name, @{name = "Size"; expression = { $_.Length / $In } } | Format-Table
+  Get-ChildItem $Path | Select-Object Name, @{name = "Size in $In"; expression = { $_.Length / $In } } | Format-Table
 } 
