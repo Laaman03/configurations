@@ -14,3 +14,11 @@ function Configure-Up {
   Pop-Location
 }
 
+function lss {
+  param(
+    [string]$Path = ".\",
+    [int]$In = 1KB
+  )
+  
+  Get-ChildItem $Path | Select-Object Name, @{name = "Size"; expression = { $_.Length / $In } } | Format-Table
+} 
