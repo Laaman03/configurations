@@ -8,6 +8,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'mileszs/ack.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-sensible'
 
 call plug#end()
 
