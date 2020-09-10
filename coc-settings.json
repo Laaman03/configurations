@@ -4,6 +4,5 @@
   "python.linting.flake8Args": ["max-line-length", "100"],
   "powershell.integratedConsole.showOnStartup": false,
   "coc.preferences.formatOnSaveFiletypes": ["*"],
-  "powershell.powerShellExePath": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.EXE",
-  "cs.trace.server": "verbose"
+  "powershell.powerShellExePath": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.EXE"
 }

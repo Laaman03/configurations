@@ -25,7 +25,7 @@ au BufEnter Filetype cs :e<CR>
 
 " my custom stuff
 set number numberwidth=3
-set expandtab shiftwidth=2
+set tabstop=2
 let mapleader = "-"
 set splitright
 set synmaxcol=700
