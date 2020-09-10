@@ -24,6 +24,8 @@ call plug#end()
 au BufEnter Filetype cs :e<CR>
 
 " my custom stuff
+set number numberwidth=3
+set expandtab shiftwidth=2
 let mapleader = "-"
 set splitright
 set synmaxcol=700
@@ -33,12 +35,14 @@ let g:lightline = {
   \ 'colorscheme': 'darcula',
   \ }
 
+" go tab
+autocmd FileType go setlocal noexpandtab tabstop=2
+" python 4 width tab
+autocmd FileType python setlocal expandtab shiftwidth=4
 
 " no longer need status becuase of lightline
 set noshowmode
 
-set number numberwidth=2
-set expandtab shiftwidth=2
 nnoremap <space> za
 nnoremap <leader>b :buffers<CR>:buffer<Space>
 
@@ -53,18 +57,11 @@ nnoremap L $
 " enter normal fast
 inoremap jk <esc>
 
-" -c = set comment
-autocmd FileType javascript nnoremap <buffer> <leader>c I//<esc>
-autocmd FileType python nnoremap <buffer> <leader>c I#<esc>
-
 " plugin shortcuts
 nnoremap <leader>t :NERDTreeToggle<CR>
 nnoremap <leader>a :Ack 
 nnoremap <leader>F :Files<CR>
 nnoremap <leader>ps :! powershell -command ""<Left>
-
-" python 4 width tab
-autocmd FileType python set expandtab shiftwidth=4
 
 " coc global extensions
 let g:coc_global_extensions=[
