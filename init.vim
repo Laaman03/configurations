@@ -34,9 +34,6 @@ nnoremap <leader>ch :noh<CR>
 let g:lightline = {
   \ 'colorscheme': 'darcula',
   \ }
-
-" go tab
-autocmd FileType go setlocal noexpandtab tabstop=2
 " python 4 width tab
 autocmd FileType python setlocal expandtab shiftwidth=4
 
