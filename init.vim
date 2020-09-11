@@ -25,7 +25,7 @@ au BufEnter Filetype cs :e<CR>
 
 " my custom stuff
 set number numberwidth=3
-set tabstop=2
+set tabstop=2 noexpandtab
 let mapleader = "-"
 set splitright
 set synmaxcol=700
@@ -36,6 +36,9 @@ let g:lightline = {
   \ }
 " python 4 width tab
 autocmd FileType python setlocal expandtab shiftwidth=4
+
+" cs 4 width tab
+autocmd FileType cs setlocal expandtab shiftwidth=4
 
 " no longer need status becuase of lightline
 set noshowmode
