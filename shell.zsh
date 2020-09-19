@@ -1,6 +1,8 @@
 export PATH="$HOME/bin:$PATH"
 export EDITOR="nvim"
 export VISUAL="nvim"
+export DOTNET_ROOT=$HOME/dotnet
+export PATH=$PATH:$DOTNET_ROOT
 alias vim="nvim"
 alias se="cd ~/configurations && nvim shell.zsh"
 alias code="/mnt/c/Program\ Files/Microsoft\ VS\ Code/bin/code"
