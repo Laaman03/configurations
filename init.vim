@@ -24,6 +24,7 @@ call plug#end()
 au BufEnter Filetype cs :e<CR>
 
 " my custom stuff
+hi Pmenu ctermbg=244
 set number numberwidth=3
 set tabstop=2 noexpandtab
 let mapleader = "-"
