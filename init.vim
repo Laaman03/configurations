@@ -24,9 +24,9 @@ call plug#end()
 au BufEnter Filetype cs :e<CR>
 
 " my custom stuff
-hi Pmenu ctermbg=244
+hi Pmenu ctermbg=255
+set tabstop=2 noexpandtab shiftwidth=2
 set number numberwidth=3
-set tabstop=2 noexpandtab
 let mapleader = "-"
 set splitright
 set synmaxcol=700
