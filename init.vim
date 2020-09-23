@@ -27,7 +27,7 @@ au BufEnter Filetype cs :e<CR>
 hi Pmenu ctermbg=255
 set tabstop=2 noexpandtab shiftwidth=2
 set number numberwidth=3
-let mapleader = "-"
+let mapleader = ","
 set splitright
 set synmaxcol=700
 highlight Search ctermbg=darkcyan
