@@ -22,3 +22,7 @@ function lss {
   
   Get-ChildItem $Path | Select-Object Name, @{name = "Size in $In"; expression = { $_.Length / $In } } | Format-Table
 } 
+
+function Clear-NvimHistory {
+  Remove-Item C:\Users\wfarris\AppData\Local\nvim-data\shada\main.shada
+}
