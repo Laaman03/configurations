@@ -58,6 +58,12 @@ nnoremap L $
 " enter normal fast
 inoremap jk <esc>
 
+if has('win32')
+	command! -bang -nargs=? -complete=dir Files
+		\ call fzf#vim#files(<q-args>, {'options': ['--preview', 'cat {}']}, <bang>0)
+endif
+
+
 " plugin shortcuts
 nnoremap <leader>t :NERDTreeToggle<CR>
 nnoremap <leader>a :Ack 
