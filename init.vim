@@ -12,19 +12,19 @@ Plug 'tpope/vim-sensible'
 
 call plug#end()
 
-" had to remove this becuase it screwed up vimplug bit time
-" use powershell on win32
-" if has('win32')
-"   set shell=powershell  shellpipe=\| 
-"   set shellcmdflag=-NoLogo\ -NoProfile\ -ExecutionPolicy\ RemoteSigned\ -Command
-"   set shellredir=\|\ Out-File\ -Encoding\ UTF8
-" endif
-"
 " Omnisharp bandaid
 au BufEnter Filetype cs :e<CR>
 
 " my custom stuff
-hi Pmenu ctermbg=255
+
+" preview fix for windows
+if has('win32')
+	command! -bang -nargs=? -complete=dir Files
+		\ call fzf#vim#files(<q-args>, 
+    \ {'options': ['--preview', 'type {}']}, <bang>0)
+endif
+
+hi NormalFloat ctermbg=235
 set tabstop=2 noexpandtab shiftwidth=2
 set number numberwidth=3
 let mapleader = ","
@@ -44,7 +44,6 @@ autocmd FileType cs setlocal expandtab shiftwidth=4
 " no longer need status becuase of lightline
 set noshowmode
 
-nnoremap <space> za
 nnoremap <leader>b :buffers<CR>:buffer<Space>
 
 " edit and source vim rc
@@ -57,12 +56,6 @@ nnoremap L $
 
 " enter normal fast
 inoremap jk <esc>
-
-if has('win32')
-	command! -bang -nargs=? -complete=dir Files
-		\ call fzf#vim#files(<q-args>, {'options': ['--preview', 'cat {}']}, <bang>0)
-endif
-
 
 " plugin shortcuts
 nnoremap <leader>t :NERDTreeToggle<CR>
