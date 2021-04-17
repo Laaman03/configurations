@@ -5,7 +5,7 @@ export DOTNET_ROOT=$HOME/dotnet
 export PATH=$PATH:$DOTNET_ROOT
 alias vim="nvim"
 alias se="cd ~/configurations && nvim shell.zsh"
-alias code="/mnt/c/Program\ Files/Microsoft\ VS\ Code/bin/code"
+alias code="/mnt/c/Users/wfarr/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code"
 alias wttr="wget -qO- wttr.in | head -17"
 
 function configure-up() {
