@@ -9,6 +9,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-sensible'
 Plug 'jiangmiao/auto-pairs'
 Plug 'kabouzeid/nvim-lspinstall'
+Plug 'onsails/lspkind-nvim'
 
 call plug#end()
 
@@ -27,6 +28,7 @@ endif
 " lsp
 lua << EOF
 require'lspinstall'.setup()
+require'lspkind'.init()
 local nvim_lsp = require('lspconfig')
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
