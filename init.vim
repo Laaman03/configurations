@@ -10,6 +10,7 @@ Plug 'tpope/vim-sensible'
 Plug 'jiangmiao/auto-pairs'
 Plug 'kabouzeid/nvim-lspinstall'
 Plug 'onsails/lspkind-nvim'
+Plug 'nvim-lua/completion-nvim'
 
 call plug#end()
 
@@ -24,6 +25,10 @@ if has('win32')
 		\ call fzf#vim#files(<q-args>, 
     \ {'options': ['--preview', 'type {}']}, <bang>0)
 endif
+
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
 
 " lsp
 lua << EOF
@@ -81,7 +86,7 @@ end
 -- and map buffer local keybindings when the language server attaches
 local servers = require'lspinstall'.installed_servers()
 for _, lsp in pairs(servers) do
-  nvim_lsp[lsp].setup { on_attach = on_attach }
+  nvim_lsp[lsp].setup { on_attach = require'completion'.on_attach }
 end
 EOF
 "end lsp
@@ -89,11 +94,13 @@ EOF
 hi Pmenu ctermbg=234 ctermfg=93
 let mapleader = ","
 set tabstop=2 noexpandtab shiftwidth=2
-set completeopt=menuone,longest
+set completeopt=menuone,noinsert,noselect
+set shortmess+=c
 set number numberwidth=3
 set splitright
 set synmaxcol=700
 highlight Search ctermbg=darkcyan
+nnoremap <leader>l :LspRestart<CR>
 nnoremap <leader>ch :noh<CR>
 let g:lightline = {
   \ 'colorscheme': 'darcula',
