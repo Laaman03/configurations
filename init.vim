@@ -10,7 +10,8 @@ Plug 'tpope/vim-sensible'
 Plug 'jiangmiao/auto-pairs'
 Plug 'kabouzeid/nvim-lspinstall'
 Plug 'onsails/lspkind-nvim'
-Plug 'nvim-lua/completion-nvim'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
 
 call plug#end()
 
@@ -34,12 +35,23 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 lua << EOF
 require'lspinstall'.setup()
 require'lspkind'.init()
+local cmp = require'cmp'
+cmp.setup({
+  mapping = {
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<CR>'] = cmp.mapping.confirm({ select = true })
+  },
+  sources = {
+		{ name = 'nvim_lsp' }
+		}
+	})
 local nvim_lsp = require('lspconfig')
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
   local opts = { noremap=true, silent=true }
@@ -86,7 +98,7 @@ end
 -- and map buffer local keybindings when the language server attaches
 local servers = require'lspinstall'.installed_servers()
 for _, lsp in pairs(servers) do
-  nvim_lsp[lsp].setup { on_attach = require'completion'.on_attach }
+  nvim_lsp[lsp].setup { capabilities = require'cmp_nvim_lsp'.update_capabilities(vim.lsp.protocol.make_client_capabilities()), on_attach = on_attach }
 end
 EOF
 "end lsp
@@ -129,6 +141,6 @@ inoremap jk <esc>
 
 " plugin shortcuts
 nnoremap <leader>a :Ack 
-nnoremap <leader>F :Files<CR>
+nnoremap <leader>f :Files<CR>
 nnoremap <leader>ps :! powershell -command ""<Left>
 
