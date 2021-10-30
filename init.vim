@@ -8,7 +8,7 @@ Plug 'mileszs/ack.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-sensible'
 Plug 'jiangmiao/auto-pairs'
-Plug 'kabouzeid/nvim-lspinstall'
+Plug 'williamboman/nvim-lsp-installer'
 Plug 'onsails/lspkind-nvim'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -33,7 +33,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " lsp
 lua << EOF
-require'lspinstall'.setup()
+local lsp_installer = require'nvim-lsp-installer'
 require'lspkind'.init()
 local cmp = require'cmp'
 cmp.setup({
@@ -97,12 +97,15 @@ local on_attach = function(client, bufnr)
   end
 end
 
--- Use a loop to conveniently both setup defined servers 
--- and map buffer local keybindings when the language server attaches
-local servers = require'lspinstall'.installed_servers()
-for _, lsp in pairs(servers) do
-  nvim_lsp[lsp].setup { capabilities = require'cmp_nvim_lsp'.update_capabilities(vim.lsp.protocol.make_client_capabilities()), on_attach = on_attach }
-end
+lsp_installer.on_server_ready(function(server)
+local capabilities = 
+  require'cmp_nvim_lsp'.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local opts = {
+    capabilities = capabilities,
+    on_attach = on_attach
+  }
+end)
+
 EOF
 "end lsp
 
