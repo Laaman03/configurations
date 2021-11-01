@@ -3,22 +3,16 @@ call plug#begin()
 Plug 'neovim/nvim-lspconfig'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'itchyny/lightline.vim'
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'mileszs/ack.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-sensible'
 Plug 'jiangmiao/auto-pairs'
 Plug 'williamboman/nvim-lsp-installer'
-Plug 'onsails/lspkind-nvim'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 
 call plug#end()
-
-" Omnisharp bandaid
-au BufEnter Filetype cs :e<CR>
-
-" my custom stuff
 
 " preview fix for windows
 if has('win32')
@@ -27,14 +21,12 @@ if has('win32')
     \ {'options': ['--preview', 'type {}']}, <bang>0)
 endif
 
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-
 " lsp
 lua << EOF
+require'lualine'.setup({
+options = {theme = 'horizon'}
+})
 local lsp_installer = require'nvim-lsp-installer'
-require'lspkind'.init()
 local cmp = require'cmp'
 cmp.setup({
   mapping = {
@@ -98,12 +90,14 @@ local on_attach = function(client, bufnr)
 end
 
 lsp_installer.on_server_ready(function(server)
-local capabilities = 
-  require'cmp_nvim_lsp'.update_capabilities(vim.lsp.protocol.make_client_capabilities())
-local opts = {
-    capabilities = capabilities,
-    on_attach = on_attach
-  }
+  local capabilities = 
+    require'cmp_nvim_lsp'.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  local opts = {
+      capabilities = capabilities,
+      on_attach = on_attach
+    }
+  server:setup(opts)
+  vim.cmd [[ do User LspAttachBuffers ]]
 end)
 
 EOF
@@ -111,27 +105,13 @@ EOF
 
 hi Pmenu ctermbg=234 ctermfg=93
 let mapleader = ","
-set tabstop=2 noexpandtab shiftwidth=2
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c
-set number numberwidth=3
 set splitright
 set synmaxcol=700
 highlight Search ctermbg=darkcyan
 nnoremap <leader>l :LspRestart<CR>
 nnoremap <leader>ch :noh<CR>
-let g:lightline = {
-  \ 'colorscheme': 'darcula',
-  \ }
-" python 4 width tab
-autocmd FileType python setlocal expandtab shiftwidth=4
-
-" cs 4 width tab
-autocmd FileType cs setlocal expandtab shiftwidth=4
-
-" no longer need status becuase of lightline
-set noshowmode
-
 nnoremap <leader>b :buffers<CR>:buffer<Space>
 
 " edit and source vim rc
@@ -150,3 +130,10 @@ nnoremap <leader>a :Ack
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>ps :! powershell -command ""<Left>
 
+" line number settings
+set number
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu | endif
+  autocmd BufLeave,FocusLost,InsertEnter,WinLeave * if &nu | set nornu | endif
+augroup END
